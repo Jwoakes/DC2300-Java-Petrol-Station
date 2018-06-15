@@ -1,3 +1,4 @@
+package model;
 /**
  * Vehicle class represents a vehicle that you will find at the petrol station
  * A vehicle is defined by it's size and tank

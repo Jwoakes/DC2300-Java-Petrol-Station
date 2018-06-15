@@ -1,3 +1,4 @@
+package model;
 /**
  * 
  * Class to represent a Motorbike.

@@ -1,6 +1,11 @@
+package controller;
 import java.util.ArrayList;
 
 import java.util.List;
+
+import model.PetrolStation;
+import model.Pump;
+import model.Till;
 
 /**
  * Main method to initialise the petrol station
