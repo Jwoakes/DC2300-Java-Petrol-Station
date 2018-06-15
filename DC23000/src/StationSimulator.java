@@ -2,6 +2,11 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+/**
+ * Main method to initialise the petrol station
+ * @author Jake Woakes
+ *
+ */
 public class StationSimulator {
 
 	public static void main(String[] args) {
