@@ -1,34 +1,42 @@
 package model;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Iterator;
 
-/**
- * 
- * Class to represent a Pump.
- * @author Jake Woakes
- * 
- */
+import model.Vehicle;
+import utilities.CircularArrayQueue;
+import controller.PumpController;
 
+/**
+ * A fuel Pump
+ * 
+ * @author Jake Woakes
+ *
+ */
 public class Pump {
 
-	//maximum queue size a pump can cater for
-	private static final int MAX_PUMP_QUEUE = 3;
-	// rate at which fuel exits pumps
-	private static final int FUEL_RATE = 1;
-	// unused space in petrol pump queue
-	private int freeSpace;
-	// vehicles queueing at a pump
-	//private final Queue<Vehicle> vehicleQueue;
-	private final Queue[] vehicleQueue;
+	/**
+	 * The capacity of the queue for the Pump
+	 */
+	public final static double VEHICLE_PUMP_CAPACITY = 3;
+	/**
+	 * The speed at which fuel is dispensed
+	 */
+	public final static double FUEL_RATE = 1;
+	/**
+	 * Space unused in the queue at pump
+	 */
+	private double freeSpace;
+	/**
+	 * The queue of Vehicles for the Pump
+	 */
+	private CircularArrayQueue<Vehicle> queue;
 
 	/**
 	 * Constructor for a Pump
 	 */
 	public Pump(double smallestVehicleSize) {
-		this.freeSpace = MAX_PUMP_QUEUE;
-		this.queue = new ObservableListQueue<Vehicle>(PUMP_CAPACITY);
+		this.freeSpace = VEHICLE_PUMP_CAPACITY;
+		this.queue = new CircularArrayQueue<Vehicle>(VEHICLE_PUMP_CAPACITY);
 	}
 	
 	/**
@@ -39,7 +47,7 @@ public class Pump {
 	 */
 	public boolean enqueue(Vehicle v) {
 		if (queue.add(v)) {
-			spaceUnused -= v.getSize();
+			freeSpace -= v.getSize();
 			return true;
 		}
 		return false;
@@ -52,7 +60,7 @@ public class Pump {
 	 */
 	public boolean fill() {
 		if (queue.iterator().hasNext()) {
-			return queue.peek().tryFill(FUEL_RATE);
+			return queue.peek().attemptVehicleFill(FUEL_RATE);
 		}
 		else {
 			return false;
@@ -67,20 +75,17 @@ public class Pump {
 	 * @throws VehicleAlreadyPaidException
 	 * @throws VehicleIsNotOccupiedException
 	 */
-	public Customer tick()
-			throws VehicleIsNotOccupiedException, VehicleAlreadyPaidException, VehicleNotFullException {
+	public Customer tick() {
 		Iterator<Vehicle> i = queue.iterator();
 		while (i.hasNext()) {
-			i.next().addTick();
+			i.next().increaseTicks();
 		}
 		if(!fill()) {
 			if (queue.iterator().hasNext() && queue.peek().getIsOccupied()) {
-				return queue.peek().leaveVehicle();
+				return queue.peek().exitVehicle();
 			}
 		}
 		return null;
-		// tryfill
-		// leave car
 	}
 	
 	/**
@@ -89,7 +94,7 @@ public class Pump {
 	 * @return
 	 */
 	public double getSpaceUnused() {
-		return spaceUnused;
+		return freeSpace;
 	}
 
 	/**
@@ -97,7 +102,7 @@ public class Pump {
 	 * 
 	 * @return
 	 */
-	public ObservableListQueue<Vehicle> getQueue() {
+	public CircularArrayQueue<Vehicle> getQueue() {
 		return this.queue;
 	}
 
@@ -120,7 +125,7 @@ public class Pump {
 		Vehicle v = queue.peek();
 		if (v != null && v.getHasPaid() && v.getIsOccupied()) {
 			v = queue.remove();
-			spaceUnused = PUMP_CAPACITY - queue.getSize();
+			freeSpace = VEHICLE_PUMP_CAPACITY - queue.getSize();
 			return v;
 		}
 		return null;

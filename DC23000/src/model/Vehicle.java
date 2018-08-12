@@ -3,13 +3,14 @@ package model;
 import java.util.UUID;
 
 import controller.StationSimulator;
+import interfaces.QueueItem;
 /**
  * Vehicle class represents a vehicle that you will find at the petrol station
  * A vehicle is defined by it's size and tank
  * @author Jake Woakes
  *
  */
-public class Vehicle {
+public class Vehicle implements QueueItem {
 
 	//size of vehicle tank
 	private final int tankSize;
@@ -131,6 +132,16 @@ public class Vehicle {
 	public boolean getDidCustomerShop() {
 		return didCustomerShop;
 	}
+	
+	/**
+	 * Getter for shoppingSpend
+	 * 
+	 * @return
+	 */
+	public double getShopSpend() {
+		return shopSpend;
+	}
+	
 	/**
 	 * the customer will shop depending upon the number of ticks since arriving
 	 */

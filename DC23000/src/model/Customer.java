@@ -1,8 +1,9 @@
 package model;
 
 import java.util.UUID;
+import interfaces.QueueItem;
 
-public class Customer {
+public class Customer implements QueueItem {
 
 	public static final int MAXIMUM_PAY_TICKS = 0;
 	public static final int MINIMUM_PAY_TICKS = 0;
