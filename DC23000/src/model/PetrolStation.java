@@ -12,6 +12,11 @@ import java.util.List;
 public class PetrolStation {
 
 	private List<Pump> pumps;
+	
+	/**
+	 * The number of ticks that have passed at this Petrol Station
+	 */
+	private int numTicksPassed = 0;
 
 	private List<Till> tills;
 
@@ -68,4 +73,18 @@ public class PetrolStation {
 
 	}
 
+	/**
+	 * Increase Petrol Station time by 1 tick
+	 */
+	public void tick() {
+		
+	}
+	
+	/**
+	 * Returns the number of ticks that have passed
+	 */
+	public int getTicks() {
+		return this.numTicksPassed;
+	}
+	
 }

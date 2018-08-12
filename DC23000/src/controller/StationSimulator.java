@@ -1,5 +1,7 @@
 package controller;
 import java.util.ArrayList;
+import java.util.Random;
+
 
 import java.util.List;
 
@@ -77,5 +79,7 @@ public class StationSimulator {
 
 
 	}
+
+	public static Random random = new Random();
 
 }
