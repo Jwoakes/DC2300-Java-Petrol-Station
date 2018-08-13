@@ -36,8 +36,8 @@ public class PumpController {
 	/**
 	 * Give a Vehicle to the Pump with the shortest queue
 	 * 
-	 * @param v
-	 * @return
+	 * @param vehicle The vehicle at a pump
+	 * @return the vehicle added to the shortest queue
 	 */
 	public Boolean enqueue(Vehicle vehicle) {
 		int shortestQueueIndex = 0;
@@ -50,9 +50,9 @@ public class PumpController {
 	}
 
 	/**
-	 * Remove all Vehicles that have paid for fuel and any Shop purchases
+	 * Remove Vehicles from the queue which have paid for fuel AND shopping
 	 * 
-	 * @return
+	 * @return list of vehicles
 	 */
 	public List<Vehicle> dequeueAllFullyPaid() {
 		List<Vehicle> finished = new LinkedList<Vehicle>();
@@ -66,9 +66,9 @@ public class PumpController {
 	}
 
 	/**
-	 * Progress time This will alert each Pump that time has passed
+	 * Progress time by 1 tick
 	 * 
-	 * @return available
+	 * @return available An Array
 	 */
 	public List<Customer> tick() {
 		ArrayList<Customer> available = new ArrayList<Customer>();
@@ -82,17 +82,18 @@ public class PumpController {
 	}
 
 	/**
-	 * Getter for the array of Pumps
+	 * Access the array of Pumps
 	 * 
-	 * @return
+	 * @return the pumps array
 	 */
 	public Pump[] getPumps() {
 		return this.pumps;
 	}
 
 	/**
+	 * Receive a customer at the Pump
 	 * 
-	 * @param customer
+	 * @param customer The customer at the pump
 	 */
 	public void recieveCustomer(Customer customer) {
 		boolean valid = false;
