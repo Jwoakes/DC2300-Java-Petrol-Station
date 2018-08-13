@@ -7,23 +7,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 
 /**
- * A Shop
- * 
+ * A class to represent the Shop at the Petrol Station
  * @author Jake Woakes
- *
  */
 public class Shop {
 
 	/**
-	 * A set of all Customers in the Shop
+	 * All customers stored in the shop
 	 */
-	private ObservableSet<Customer> holdingArea;
+	private ObservableSet<Customer> allCustomers;
 
 	/**
-	 * Constructor for a Shop
+	 * Constructor to build the shop
 	 */
 	public Shop() {
-		this.holdingArea = FXCollections.observableSet();
+		this.allCustomers = FXCollections.observableSet();
 	}
 
 	/**
@@ -38,44 +36,46 @@ public class Shop {
 
 	/**
 	 * Remove a Customer from the Shop
-	 * 
-	 * @return
+	 * @return the list without the customer in
 	 */
 	public List<Customer> remove(List<Customer> finishedShopping) {
 		List<Customer> removed = new LinkedList<Customer>();
-		for (Customer c : finishedShopping) {
-			if(holdingArea.remove(c)) {
-				removed.add(c);
+		for (Customer customer : finishedShopping) {
+			if(allCustomers.remove(customer)) {
+				removed.add(customer);
 			}
 		}
 		return removed;
 	}
 
 	/**
-	 * Reduce the shopping timer by 1 for all Customers in the Shop Return list of
-	 * customers who are done shopping
+	 * Reduce the shopping timer by 1
+	 * @return customers finished shopping
 	 */
 	public List<Customer> reduceAllTimers() {
 		List<Customer> finishedShopping = new LinkedList<Customer>();
-		for (Customer c : holdingArea) {
-			if (c.reduceCustomerPayTicks() < 1) {
-				finishedShopping.add(c);
-				c.finishShopping();
+		for (Customer customer : allCustomers) {
+			if (customer.reduceCustomerPayTicks() < 1) {
+				finishedShopping.add(customer);
+				customer.finishShopping();
 			}
 		}
 		return finishedShopping;
 	}
 
+	/**
+	 * Progress time
+	 * @return 
+	 */
 	public List<Customer> tick() {
 		return remove(reduceAllTimers());
 	}
 
 	/**
-	 * Getter for the set of Customers in the Shop
-	 * 
-	 * @return
+	 * Access the Customers in the Shop
+	 * @return the customers in the shop
 	 */
 	public ObservableSet<Customer> getContents() {
-		return this.holdingArea;
+		return this.allCustomers;
 	}
 }

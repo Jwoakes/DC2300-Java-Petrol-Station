@@ -2,12 +2,15 @@ package utilities;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import interfaces.QueueItem;
+import interfaces.ItemsInQueue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class CircularArrayQueue<T extends QueueItem> implements Iterable<T> {
+/**
+ * A class to represent a Circular Array Queue
+ * @author Jake Woakes
+ */
+public class CircularArrayQueue<T extends ItemsInQueue> implements Iterable<T> {
 	
 	/**
 	 * The Array that holds things inside the queue
@@ -23,8 +26,8 @@ public class CircularArrayQueue<T extends QueueItem> implements Iterable<T> {
 	private double freeSpace;
 
 	/**
-	 * Constructor for CircularArrayQueue
-	 * @param capacity The maximum size of the queue
+	 * Constructor to build the CircularArrayQueue
+	 * @param capacity The maximum capacity size of the queue
 	 */
 	public CircularArrayQueue(double capacity) {
 		queueItems = FXCollections.observableList(new ArrayList<T>());
@@ -34,48 +37,48 @@ public class CircularArrayQueue<T extends QueueItem> implements Iterable<T> {
 	
 	/**
 	 * Add an element to the rear of the queue
-	 * @param t
-	 * @return
+	 * @param element What we want added to the queue
+	 * @return whether the element was added
 	 * 
 	 */
-	public boolean add(T t) {
-		if (isFull() || t.getSize() > freeSpace) {
+	public boolean add(T element) {
+		if (isFull() || element.getSize() > freeSpace) {
 			return false;
 		}
-		queueItems.add(t);
-		freeSpace -= t.getSize();
+		queueItems.add(element);
+		freeSpace -= element.getSize();
 		return true;
 	}
 	
 	/**
 	 * Remove the element at the front of the queue
-	 * @return
+	 * @return the removed element
 	 */
 	public T remove() {
-		T t = queueItems.remove(0);
-		freeSpace += t.getSize();
-		return t;
+		T element = queueItems.remove(0);
+		freeSpace += element.getSize();
+		return element;
 	}
 
 	/**
-	 * Returns true if there is nothing in the queue
-	 * @return
+	 * If queue is empty
+	 * @return true
 	 */
 	public boolean isEmpty() {
 		return queueItems.isEmpty();
 	}
 
 	/**
-	 * Returns true if the queue is full
-	 * @return
+	 * If the queue is full
+	 * @return true
 	 */
 	public boolean isFull() {
 		return freeSpace == 0;
 	}
 
 	/**
-	 * Return the first element in the queue without removing it
-	 * @return
+	 * Get element at front of the queue without removing it
+	 * @return the element at the front of the queue
 	 */
 	public T peek() {
 		try {
@@ -87,29 +90,33 @@ public class CircularArrayQueue<T extends QueueItem> implements Iterable<T> {
 
 	/**
 	 * Check if the queue contains a specified element
-	 * @param t
-	 * @return
+	 * @param element The element we want to look for
+	 * @return true if element is found
 	 */
-	public boolean contains(T t) {
-		return queueItems.contains(t);
+	public boolean contains(T element) {
+		return queueItems.contains(element);
 	}
-
-	/*
+	
+	/**
 	 * Returns an iterator for the queue
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Iterable#iterator()
 	 */
 	public Iterator<T> iterator() {
 		return queueItems.iterator();
 	}
 	
+	/**
+	 * Access the size of the queue
+	 * @return the current size of the queue
+	 */
 	public double getSize() {
 		return maxQueueCapacity - freeSpace;
 	}
 	
+	/**
+	 * Access listeners to track change
+	 * @return the array
+	 */
 	public ObservableList<T> getObservable() {
 		return queueItems;
 	}
-
 }

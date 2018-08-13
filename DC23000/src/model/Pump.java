@@ -7,10 +7,8 @@ import utilities.CircularArrayQueue;
 import controller.PumpController;
 
 /**
- * A fuel Pump
- * 
+ * A Class to represent a Pump at a Petrol Station
  * @author Jake Woakes
- *
  */
 public class Pump {
 
@@ -19,11 +17,11 @@ public class Pump {
 	 */
 	public final static double VEHICLE_PUMP_CAPACITY = 3;
 	/**
-	 * The speed at which fuel is dispensed
+	 * The speed at which Fuel is dispensed
 	 */
 	public final static double FUEL_RATE = 1;
 	/**
-	 * Space unused in the queue at pump
+	 * Space unused in the queue at Pump
 	 */
 	private double freeSpace;
 	/**
@@ -40,23 +38,21 @@ public class Pump {
 	}
 	
 	/**
-	 * Takes a vehicle and adds it to the pump queue
-	 * 
-	 * @param v
-	 * @return boolean
+	 *  Adds a vehicle to the pump queue
+	 * @param vehicle a vehicle at the petrol station
+	 * @return whether vehicle was added
 	 */
-	public boolean enqueue(Vehicle v) {
-		if (queue.add(v)) {
-			freeSpace -= v.getSize();
+	public boolean enqueue(Vehicle vehicle) {
+		if (queue.add(vehicle)) {
+			freeSpace -= vehicle.getSize();
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * try to fill the next vehicle in the queue
-	 * 
-	 * @return boolean
+	 * Attempt to fill the next vehicle in the queue
+	 * @return boolean whether it was filled or not
 	 */
 	public boolean fill() {
 		if (queue.iterator().hasNext()) {
@@ -68,12 +64,7 @@ public class Pump {
 	}
 
 	/**
-	 * Progress time at the pump This will alert the Vehicle at the front of the
-	 * queue that time has passed
-	 * 
-	 * @throws VehicleNotFullException
-	 * @throws VehicleAlreadyPaidException
-	 * @throws VehicleIsNotOccupiedException
+	 * Progress ticks at the pump
 	 */
 	public Customer tick() {
 		Iterator<Vehicle> i = queue.iterator();
@@ -89,44 +80,39 @@ public class Pump {
 	}
 	
 	/**
-	 * Getter for space unused
-	 * 
-	 * @return
+	 * Access the free space in the queue
+	 * @return the amount of space free
 	 */
 	public double getSpaceUnused() {
 		return freeSpace;
 	}
 
 	/**
-	 * Getter for the queue for the Pump
-	 * 
-	 * @return
+	 * Access the queue for the Pump
+	 * @return the queue
 	 */
 	public CircularArrayQueue<Vehicle> getQueue() {
 		return this.queue;
 	}
 
 	/**
-	 * Getter for queue size
-	 * 
-	 * @return
+	 * Access the size of the queue
+	 * @return the size of the queue
 	 */
 	public double getQueueSize() {
 		return queue.getSize();
 	}
 
 	/**
-	 * loop through vehicles in the queue and check if the 
-	 * vehicle has paid, if so then remove from the queue
-	 * 
+	 * Check if the vehicle has paid and remove them if they have
 	 * @return Vehicle
 	 */
 	public Vehicle dequeueWhenFullyPaid() {
-		Vehicle v = queue.peek();
-		if (v != null && v.getHasPaid() && v.getIsOccupied()) {
-			v = queue.remove();
+		Vehicle vehicle = queue.peek();
+		if (vehicle != null && vehicle.getHasPaid() && vehicle.getIsOccupied()) {
+			vehicle = queue.remove();
 			freeSpace = VEHICLE_PUMP_CAPACITY - queue.getSize();
-			return v;
+			return vehicle;
 		}
 		return null;
 	}

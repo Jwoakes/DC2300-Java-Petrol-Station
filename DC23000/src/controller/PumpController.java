@@ -52,39 +52,32 @@ public class PumpController {
 
 	/**
 	 * Remove all Vehicles that have paid for fuel and any Shop purchases
+	 * @return
 	 */
 	public List<Vehicle> dequeueAllFullyPaid() {
-		List<Vehicle> complete = new LinkedList<Vehicle>();
+		List<Vehicle> finished = new LinkedList<Vehicle>();
 		for (int i = 0; i < pumps.length; i++) {
-			Vehicle v = pumps[i].dequeueWhenFullyPaid();
-			if (v != null) {
-				complete.add(v);
+			Vehicle vehicle = pumps[i].dequeueWhenFullyPaid();
+			if (vehicle != null) {
+				finished.add(vehicle);
 			}
 		}
-		return complete;
+		return finished;
 	}
 
 	/**
 	 * Progress time This will alert each Pump that time has passed
-	 * @return 
-	 * 
-	 * @throws VehicleNotFullException
-	 * @throws VehicleAlreadyPaidException
-	 * @throws VehicleIsNotOccupiedException
-	 * @throws CustomerHasNotPaidException
-	 * @throws CustomerPresentException
-	 * @throws CustomerCarMismatchException
-	 * @throws CustomerCouldNotFindVehicleException
+	 * @return available
 	 */
 	public List<Customer> tick() {
-		ArrayList<Customer> ready = new ArrayList<Customer>();
+		ArrayList<Customer> available = new ArrayList<Customer>();
 		for (int i = 0; i < pumps.length; i++) {
 			Customer customer = pumps[i].tick();
 			if (customer != null) {
-				ready.add(customer);
+				available.add(customer);
 			}
 		}
-		return ready;
+		return available;
 	}
 
 	/**
@@ -96,12 +89,16 @@ public class PumpController {
 		return this.pumps;
 	}
 
+	/**
+	 * 
+	 * @param customer
+	 */
 	public void recieveCustomer(Customer customer) {
-		boolean found = false;
-		for (Pump p : pumps) {
-			if (p.getQueue().peek() != null && p.getQueue().peek().getRegistration() == customer.getRegistration()) {
-				p.getQueue().peek().customerBackInVehicle(customer);
-				found = true;
+		boolean valid = false;
+		for (Pump pump : pumps) {
+			if (pump.getQueue().peek() != null && pump.getQueue().peek().getRegistration() == customer.getRegistration()) {
+				pump.getQueue().peek().customerBackInVehicle(customer);
+				valid = true;
 				break;
 			}
 		}

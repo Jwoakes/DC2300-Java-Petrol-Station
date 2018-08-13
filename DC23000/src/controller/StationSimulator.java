@@ -135,6 +135,9 @@ public class StationSimulator {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public String toString() {
 		StringBuilder output = new StringBuilder();
 		int ticks = station.getTicks().intValue();
