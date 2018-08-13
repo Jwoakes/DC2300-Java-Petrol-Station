@@ -30,19 +30,19 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="603.0" layoutY="433.0" mnemonicParsing="false" text="Finish Simulation" />
-                        <Button layoutX="570.0" layoutY="107.0" mnemonicParsing="false" text="Run for a minute" />
-                        <Button layoutX="573.0" layoutY="197.0" mnemonicParsing="false" text="Run for an hour" />
-                        <ToggleButton layoutX="105.0" layoutY="248.0" mnemonicParsing="false" text="Trucks Enabled" />
-                        <TextField layoutX="105.0" layoutY="92.0" text="Fuel Price in £" />
-                        <Button layoutX="105.0" layoutY="433.0" mnemonicParsing="false" text="Start Simulation" />
-                        <TextField layoutX="105.0" layoutY="166.0" text="Number of Pumps" />
-                        <TextArea layoutX="716.0" layoutY="197.0" prefHeight="30.0" prefWidth="200.0" />
-                        <TextArea layoutX="716.0" layoutY="108.0" prefHeight="30.0" prefWidth="200.0" />
-                        <Label layoutX="748.0" layoutY="112.0" text="Time past minutes" />
-                        <Label layoutX="748.0" layoutY="202.0" text="Time past hours" />
-                        <TextArea layoutX="713.0" layoutY="264.0" prefHeight="30.0" prefWidth="200.0" />
-                        <Label layoutX="748.0" layoutY="269.0" text="Ticks past" />
+                        <Button id="FinishSimBtn" layoutX="603.0" layoutY="433.0" mnemonicParsing="false" text="Finish Simulation" />
+                        <Button id="RunMinBtn" layoutX="570.0" layoutY="107.0" mnemonicParsing="false" text="Run for a minute" />
+                        <Button id="RunHourBtn" layoutX="573.0" layoutY="197.0" mnemonicParsing="false" text="Run for an hour" />
+                        <ToggleButton id="TrucksEnabledBtn" layoutX="105.0" layoutY="248.0" mnemonicParsing="false" text="Trucks Enabled" />
+                        <TextField id="fuelPriceTxt" layoutX="105.0" layoutY="92.0" promptText="Fuel Price in £" />
+                        <Button id="StartSimBtn" layoutX="105.0" layoutY="433.0" mnemonicParsing="false" text="Start Simulation" />
+                        <TextField id="NumberOfPumpsTxt" layoutX="105.0" layoutY="166.0" promptText="Number of Pumps" />
+                        <TextArea id="HoursPastTxt" layoutX="716.0" layoutY="197.0" prefHeight="30.0" prefWidth="200.0" />
+                        <TextArea id="MinsPastTxt" layoutX="716.0" layoutY="108.0" prefHeight="30.0" prefWidth="200.0" />
+                        <Label layoutX="734.0" layoutY="82.0" text="Time past minutes" />
+                        <Label layoutX="730.0" layoutY="171.0" text="Time past hours" />
+                        <TextArea id="TicksPastTxt" layoutX="716.0" layoutY="273.0" prefHeight="30.0" prefWidth="200.0" />
+                        <Label layoutX="730.0" layoutY="248.0" text="Ticks past" />
                      </children>
                   </AnchorPane>
                </content>
@@ -51,8 +51,8 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="91.0" layoutY="87.0" prefHeight="53.0" prefWidth="276.0" />
-                        <TextField layoutX="91.0" layoutY="235.0" prefHeight="53.0" prefWidth="276.0" />
+                        <TextField id="ShopCustTxt" layoutX="91.0" layoutY="87.0" prefHeight="53.0" prefWidth="276.0" />
+                        <TextField id="ShopSpendTxt" layoutX="91.0" layoutY="235.0" prefHeight="53.0" prefWidth="276.0" />
                         <Label layoutX="91.0" layoutY="56.0" text="Number of customers that have visted the shop" />
                         <Label layoutX="91.0" layoutY="196.0" text="Amount that customer have spent in the shop" />
                      </children>
@@ -65,8 +65,8 @@
                      <children>
                         <Label layoutX="101.0" layoutY="189.0" text="Total profit lost" />
                         <Label layoutX="95.0" layoutY="56.0" text="Total profit made" />
-                        <TextField layoutX="95.0" layoutY="90.0" prefHeight="53.0" prefWidth="276.0" />
-                        <TextField layoutX="95.0" layoutY="227.0" prefHeight="53.0" prefWidth="276.0" />
+                        <TextField id="ProfitMadeTxt" layoutX="95.0" layoutY="90.0" prefHeight="53.0" prefWidth="276.0" />
+                        <TextField id="ProfitLostTxt" layoutX="95.0" layoutY="227.0" prefHeight="53.0" prefWidth="276.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -75,8 +75,8 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="75.0" layoutY="235.0" prefHeight="53.0" prefWidth="276.0" />
-                        <TextField layoutX="75.0" layoutY="98.0" prefHeight="53.0" prefWidth="276.0" />
+                        <TextField id="FuelLostTxt" layoutX="75.0" layoutY="235.0" prefHeight="53.0" prefWidth="276.0" />
+                        <TextField id="FuelSoldTxt" layoutX="75.0" layoutY="98.0" prefHeight="53.0" prefWidth="276.0" />
                         <Label layoutX="75.0" layoutY="64.0" text="Total fuel sold" />
                         <Label layoutX="81.0" layoutY="197.0" text="Total fuel sales lost" />
                      </children>
@@ -89,9 +89,9 @@
                      <children>
                         <Label layoutX="44.0" layoutY="35.0" text="Total vehicles that have used the pump" />
                         <TextField layoutX="303.0" layoutY="117.0" />
-                        <TextField layoutX="303.0" layoutY="162.0" />
-                        <TextField layoutX="303.0" layoutY="209.0" />
-                        <TextField layoutX="303.0" layoutY="257.0" />
+                        <TextField id="SmallCarTxt" layoutX="303.0" layoutY="162.0" />
+                        <TextField id="FamilySedanTxt" layoutX="303.0" layoutY="209.0" />
+                        <TextField id="TrucksTxt" layoutX="303.0" layoutY="257.0" />
                         <Label layoutX="124.0" layoutY="122.0" text="Bikes" />
                         <Label layoutX="124.0" layoutY="167.0" text="Small Cars" />
                         <Label layoutX="127.0" layoutY="214.0" text="Family Sedans" />
@@ -104,7 +104,7 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <BarChart layoutX="14.0" layoutY="67.0">
+                        <BarChart id="ProfitLossGraph" layoutX="14.0" layoutY="67.0">
                           <xAxis>
                             <CategoryAxis layoutY="2.0" side="BOTTOM" />
                           </xAxis>
@@ -112,7 +112,7 @@
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </BarChart>
-                        <BarChart layoutX="514.0" layoutY="67.0">
+                        <BarChart id="VehicleGraph" layoutX="514.0" layoutY="67.0">
                           <xAxis>
                             <CategoryAxis layoutY="2.0" side="BOTTOM" />
                           </xAxis>

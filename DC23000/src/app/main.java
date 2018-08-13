@@ -27,7 +27,4 @@ public class main extends Application {
 			a.printStackTrace();
 		}
 	}
-	
-//	private static void launch(String[] args) {	
-
 }
