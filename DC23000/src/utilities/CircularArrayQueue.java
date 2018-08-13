@@ -8,10 +8,11 @@ import javafx.collections.ObservableList;
 
 /**
  * A class to represent a Circular Array Queue
+ * 
  * @author Jake Woakes
  */
 public class CircularArrayQueue<T extends ItemsInQueue> implements Iterable<T> {
-	
+
 	/**
 	 * The Array that holds things inside the queue
 	 */
@@ -27,17 +28,21 @@ public class CircularArrayQueue<T extends ItemsInQueue> implements Iterable<T> {
 
 	/**
 	 * Constructor to build the CircularArrayQueue
-	 * @param capacity The maximum capacity size of the queue
+	 * 
+	 * @param capacity
+	 *            The maximum capacity size of the queue
 	 */
 	public CircularArrayQueue(double capacity) {
 		queueItems = FXCollections.observableList(new ArrayList<T>());
 		this.maxQueueCapacity = capacity;
 		this.freeSpace = capacity;
 	}
-	
+
 	/**
 	 * Add an element to the rear of the queue
-	 * @param element What we want added to the queue
+	 * 
+	 * @param element
+	 *            What we want added to the queue
 	 * @return whether the element was added
 	 * 
 	 */
@@ -49,9 +54,10 @@ public class CircularArrayQueue<T extends ItemsInQueue> implements Iterable<T> {
 		freeSpace -= element.getSize();
 		return true;
 	}
-	
+
 	/**
 	 * Remove the element at the front of the queue
+	 * 
 	 * @return the removed element
 	 */
 	public T remove() {
@@ -62,6 +68,7 @@ public class CircularArrayQueue<T extends ItemsInQueue> implements Iterable<T> {
 
 	/**
 	 * If queue is empty
+	 * 
 	 * @return true
 	 */
 	public boolean isEmpty() {
@@ -70,6 +77,7 @@ public class CircularArrayQueue<T extends ItemsInQueue> implements Iterable<T> {
 
 	/**
 	 * If the queue is full
+	 * 
 	 * @return true
 	 */
 	public boolean isFull() {
@@ -78,6 +86,7 @@ public class CircularArrayQueue<T extends ItemsInQueue> implements Iterable<T> {
 
 	/**
 	 * Get element at front of the queue without removing it
+	 * 
 	 * @return the element at the front of the queue
 	 */
 	public T peek() {
@@ -90,30 +99,34 @@ public class CircularArrayQueue<T extends ItemsInQueue> implements Iterable<T> {
 
 	/**
 	 * Check if the queue contains a specified element
-	 * @param element The element we want to look for
+	 * 
+	 * @param element
+	 *            The element we want to look for
 	 * @return true if element is found
 	 */
 	public boolean contains(T element) {
 		return queueItems.contains(element);
 	}
-	
+
 	/**
 	 * Returns an iterator for the queue
 	 */
 	public Iterator<T> iterator() {
 		return queueItems.iterator();
 	}
-	
+
 	/**
 	 * Access the size of the queue
+	 * 
 	 * @return the current size of the queue
 	 */
 	public double getSize() {
 		return maxQueueCapacity - freeSpace;
 	}
-	
+
 	/**
 	 * Access listeners to track change
+	 * 
 	 * @return the array
 	 */
 	public ObservableList<T> getObservable() {

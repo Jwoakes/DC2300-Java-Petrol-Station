@@ -8,6 +8,7 @@ import controller.PumpController;
 
 /**
  * A Class to represent a Pump at a Petrol Station
+ * 
  * @author Jake Woakes
  */
 public class Pump {
@@ -36,10 +37,12 @@ public class Pump {
 		this.freeSpace = VEHICLE_PUMP_CAPACITY;
 		this.queue = new CircularArrayQueue<Vehicle>(VEHICLE_PUMP_CAPACITY);
 	}
-	
+
 	/**
-	 *  Adds a vehicle to the pump queue
-	 * @param vehicle a vehicle at the petrol station
+	 * Adds a vehicle to the pump queue
+	 * 
+	 * @param vehicle
+	 *            a vehicle at the petrol station
 	 * @return whether vehicle was added
 	 */
 	public boolean enqueue(Vehicle vehicle) {
@@ -52,13 +55,13 @@ public class Pump {
 
 	/**
 	 * Attempt to fill the next vehicle in the queue
+	 * 
 	 * @return boolean whether it was filled or not
 	 */
 	public boolean fill() {
 		if (queue.iterator().hasNext()) {
 			return queue.peek().attemptVehicleFill(FUEL_RATE);
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -71,16 +74,17 @@ public class Pump {
 		while (i.hasNext()) {
 			i.next().increaseTicks();
 		}
-		if(!fill()) {
+		if (!fill()) {
 			if (queue.iterator().hasNext() && queue.peek().getIsOccupied()) {
 				return queue.peek().exitVehicle();
 			}
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Access the free space in the queue
+	 * 
 	 * @return the amount of space free
 	 */
 	public double getSpaceUnused() {
@@ -89,6 +93,7 @@ public class Pump {
 
 	/**
 	 * Access the queue for the Pump
+	 * 
 	 * @return the queue
 	 */
 	public CircularArrayQueue<Vehicle> getQueue() {
@@ -97,6 +102,7 @@ public class Pump {
 
 	/**
 	 * Access the size of the queue
+	 * 
 	 * @return the size of the queue
 	 */
 	public double getQueueSize() {
@@ -105,6 +111,7 @@ public class Pump {
 
 	/**
 	 * Check if the vehicle has paid and remove them if they have
+	 * 
 	 * @return Vehicle
 	 */
 	public Vehicle dequeueWhenFullyPaid() {

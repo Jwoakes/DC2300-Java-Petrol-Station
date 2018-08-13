@@ -4,11 +4,12 @@ import javafx.beans.property.SimpleBooleanProperty;
 
 /**
  * Class to represent a truck
+ * 
  * @author Jake Woakes
  *
  */
 public class Truck extends Vehicle {
-	
+
 	/**
 	 * The size of the Small Car vehicle
 	 */
@@ -54,17 +55,19 @@ public class Truck extends Vehicle {
 	 * Constructor to build the Truck Vehicle
 	 */
 	public Truck() {
-		super(TRUCK_SIZE, TRUCK_MIN_FUEL, TRUCK_MAX_FUEL, TRUCK_SHOP_PROBABILITY, TRUCK_TICKS_BEFORE_SHOP, TRUCK_MIN_SHOP_TICKS, TRUCK_MAX_SHOP_TICKS, TRUCK_MIN_SHOP_SPEND, TRUCK_MAX_SHOP_SPEND);
+		super(TRUCK_SIZE, TRUCK_MIN_FUEL, TRUCK_MAX_FUEL, TRUCK_SHOP_PROBABILITY, TRUCK_TICKS_BEFORE_SHOP,
+				TRUCK_MIN_SHOP_TICKS, TRUCK_MAX_SHOP_TICKS, TRUCK_MIN_SHOP_SPEND, TRUCK_MAX_SHOP_SPEND);
 	}
-	
+
 	/**
 	 * Access whether the truck driver was happy enough to visit the shop
+	 * 
 	 * @return whether they were happy enough
 	 */
 	public SimpleBooleanProperty getHappyToShop() {
 		return happyToShop;
 	}
-	
+
 	/**
 	 * Whether the truck driver was happy enough to visit the shop
 	 */

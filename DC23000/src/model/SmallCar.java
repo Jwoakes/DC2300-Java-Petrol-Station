@@ -1,11 +1,13 @@
 package model;
+
 /**
  * Class to represent a truck
+ * 
  * @author Jake Woakes
  *
  */
 public class SmallCar extends Vehicle {
-	
+
 	/**
 	 * The size of the Small Car vehicle
 	 */
@@ -42,12 +44,14 @@ public class SmallCar extends Vehicle {
 	 * The maximum amount of money a customer will spend in the Shop
 	 */
 	private static final double SMALL_CAR_MAX_SHOP_SPEND = 10;
-	
+
 	/**
 	 * Constructor to build a Small Car
 	 */
 	public SmallCar() {
-		super(SMALL_CAR_SIZE, SMALL_CAR_MIN_CAPACITY, SMALL_CAR_MAX_CAPACITY, SMALL_CAR_SHOP_PROBABILITY, SMALL_CAR_TICKS_BEFORE_SHOP, SMALL_CAR_MIN_SHOP_TICKS, SMALL_CAR_MAX_SHOP_TICKS, SMALL_CAR_MIN_SHOP_SPEND, SMALL_CAR_MAX_SHOP_SPEND);
+		super(SMALL_CAR_SIZE, SMALL_CAR_MIN_CAPACITY, SMALL_CAR_MAX_CAPACITY, SMALL_CAR_SHOP_PROBABILITY,
+				SMALL_CAR_TICKS_BEFORE_SHOP, SMALL_CAR_MIN_SHOP_TICKS, SMALL_CAR_MAX_SHOP_TICKS,
+				SMALL_CAR_MIN_SHOP_SPEND, SMALL_CAR_MAX_SHOP_SPEND);
 	}
 
 }

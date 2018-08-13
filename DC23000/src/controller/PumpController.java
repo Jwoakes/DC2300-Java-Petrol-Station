@@ -8,7 +8,6 @@ import model.Customer;
 import model.Pump;
 import model.Vehicle;
 
-
 /**
  * A controller for any number of Pumps
  * 
@@ -52,6 +51,7 @@ public class PumpController {
 
 	/**
 	 * Remove all Vehicles that have paid for fuel and any Shop purchases
+	 * 
 	 * @return
 	 */
 	public List<Vehicle> dequeueAllFullyPaid() {
@@ -67,6 +67,7 @@ public class PumpController {
 
 	/**
 	 * Progress time This will alert each Pump that time has passed
+	 * 
 	 * @return available
 	 */
 	public List<Customer> tick() {
@@ -96,7 +97,8 @@ public class PumpController {
 	public void recieveCustomer(Customer customer) {
 		boolean valid = false;
 		for (Pump pump : pumps) {
-			if (pump.getQueue().peek() != null && pump.getQueue().peek().getRegistration() == customer.getRegistration()) {
+			if (pump.getQueue().peek() != null
+					&& pump.getQueue().peek().getRegistration() == customer.getRegistration()) {
 				pump.getQueue().peek().customerBackInVehicle(customer);
 				valid = true;
 				break;

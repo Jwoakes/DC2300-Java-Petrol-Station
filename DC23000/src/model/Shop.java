@@ -8,6 +8,7 @@ import javafx.collections.ObservableSet;
 
 /**
  * A class to represent the Shop at the Petrol Station
+ * 
  * @author Jake Woakes
  */
 public class Shop {
@@ -31,17 +32,18 @@ public class Shop {
 		if (c.getEnterShop()) {
 			return true;
 		} else
-		return false;
+			return false;
 	}
 
 	/**
 	 * Remove a Customer from the Shop
+	 * 
 	 * @return the list without the customer in
 	 */
 	public List<Customer> remove(List<Customer> finishedShopping) {
 		List<Customer> removed = new LinkedList<Customer>();
 		for (Customer customer : finishedShopping) {
-			if(allCustomers.remove(customer)) {
+			if (allCustomers.remove(customer)) {
 				removed.add(customer);
 			}
 		}
@@ -50,6 +52,7 @@ public class Shop {
 
 	/**
 	 * Reduce the shopping timer by 1
+	 * 
 	 * @return customers finished shopping
 	 */
 	public List<Customer> reduceAllTimers() {
@@ -65,7 +68,8 @@ public class Shop {
 
 	/**
 	 * Progress time
-	 * @return 
+	 * 
+	 * @return
 	 */
 	public List<Customer> tick() {
 		return remove(reduceAllTimers());
@@ -73,6 +77,7 @@ public class Shop {
 
 	/**
 	 * Access the Customers in the Shop
+	 * 
 	 * @return the customers in the shop
 	 */
 	public ObservableSet<Customer> getContents() {

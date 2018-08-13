@@ -9,6 +9,7 @@ import model.Till;
 
 /**
  * A controller for any number of Tills
+ * 
  * @author Jake Woakes
  */
 public class TillController {
@@ -20,6 +21,7 @@ public class TillController {
 
 	/**
 	 * Constructor to build a Till Controller
+	 * 
 	 * @param numTills
 	 */
 	public TillController(int numTills, int maxQueueSize) {
@@ -31,10 +33,12 @@ public class TillController {
 
 	/**
 	 * Pass Customer to the Till with the shortest queue
-	 * @param customer The customer at the till
+	 * 
+	 * @param customer
+	 *            The customer at the till
 	 */
 
-	public void enqueue(Customer customer){
+	public void enqueue(Customer customer) {
 		int shortestQueueIndex = 0;
 		for (int i = 0; i < tills.length; i++) {
 			if (tills[i].getQueueSize() < tills[shortestQueueIndex].getQueueSize()) {
@@ -46,7 +50,9 @@ public class TillController {
 
 	/**
 	 * Add each customer to the List
-	 * @param customers The customers at the till
+	 * 
+	 * @param customers
+	 *            The customers at the till
 	 */
 	public void enqueue(List<Customer> customers) {
 		for (Customer customer : customers) {
@@ -56,6 +62,7 @@ public class TillController {
 
 	/**
 	 * Remove Customer at the front of queue if paid
+	 * 
 	 * @return List of paid customers
 	 */
 	public List<Customer> dequeueFullyPaid() {
@@ -71,6 +78,7 @@ public class TillController {
 
 	/**
 	 * Collect payments from Ready Customers
+	 * 
 	 * @return the list of payments
 	 */
 	public List<Payment> collectPayments() {
@@ -86,6 +94,7 @@ public class TillController {
 
 	/**
 	 * Access the array of Tills
+	 * 
 	 * @return the configured tills at the petrol station
 	 */
 	public Till[] getTills() {

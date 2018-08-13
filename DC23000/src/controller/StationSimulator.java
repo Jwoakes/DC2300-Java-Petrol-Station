@@ -5,7 +5,6 @@ import java.util.Random;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
-
 import model.FamilySedan;
 import model.Motorbike;
 import model.PetrolStation;
@@ -166,7 +165,7 @@ public class StationSimulator {
 	}
 
 	private static void launch(String[] args) {
-		
+
 	}
 
 }

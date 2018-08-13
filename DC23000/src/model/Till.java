@@ -4,6 +4,7 @@ import utilities.CircularArrayQueue;
 
 /**
  * A Class to represent a Till at a Petrol Station
+ * 
  * @author Jake Woakes
  */
 public class Till {
@@ -22,7 +23,9 @@ public class Till {
 
 	/**
 	 * Add customer to queue
-	 * @param customer A Customer at the till
+	 * 
+	 * @param customer
+	 *            A Customer at the till
 	 */
 	public void enqueue(Customer customer) {
 		if (!queue.add(customer)) {
@@ -32,6 +35,7 @@ public class Till {
 
 	/**
 	 * Take payment from the front of the queue
+	 * 
 	 * @return
 	 */
 	public Payment collectPayment() {
@@ -40,17 +44,17 @@ public class Till {
 		}
 		return null;
 	}
-	
+
 	/**
-	 * If the queue is empty or first customer hasn't paid 
-	 * don't return anything, if those conditions are not met
-	 * call remove() on the queue
+	 * If the queue is empty or first customer hasn't paid don't return anything, if
+	 * those conditions are not met call remove() on the queue
 	 * 
 	 * @return Customer
 	 */
 
 	/**
 	 * If customer has finished paying remove them from queue
+	 * 
 	 * @return removed customer
 	 */
 	public Customer dequeueWhenDone() {
@@ -62,6 +66,7 @@ public class Till {
 
 	/**
 	 * Access the queue of Customers
+	 * 
 	 * @return the customers in the queue
 	 */
 	public CircularArrayQueue<Customer> getQueue() {
@@ -70,6 +75,7 @@ public class Till {
 
 	/**
 	 * Access the size of the queue
+	 * 
 	 * @return the size of the queue
 	 */
 	public double getQueueSize() {

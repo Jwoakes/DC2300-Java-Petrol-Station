@@ -4,8 +4,10 @@ import java.util.UUID;
 
 import controller.StationSimulator;
 import interfaces.ItemsInQueue;
+
 /**
  * A class to represent a vehicle at a Petrol Station
+ * 
  * @author Jake Woakes
  */
 public class Vehicle implements ItemsInQueue {
@@ -69,17 +71,28 @@ public class Vehicle implements ItemsInQueue {
 
 	/**
 	 * A constructor to build a Vehicle
-	 * @param vehicleSize The size of the vehicle
-	 * @param minCapacity The minimum capacity of a Vehicle fuel tank
-	 * @param maxCapacity The maximum capacity of a Vehicle fuel tank
-	 * @param shopProbability The probability a Customer will enter the shop
-	 * @param ticksBeforeNoShop The time before the driver will not enter the shop
-	 * @param minShopTicks The minimum time the Customer will spend in the shop
-	 * @param maxShopTicks The maximum time the Customer will spend in the shop
-	 * @param minShopSpend The minimum amount the Customer will spend in the shop
-	 * @param maxShopSpend The maximum amount the Customer will spend in the shop
+	 * 
+	 * @param vehicleSize
+	 *            The size of the vehicle
+	 * @param minCapacity
+	 *            The minimum capacity of a Vehicle fuel tank
+	 * @param maxCapacity
+	 *            The maximum capacity of a Vehicle fuel tank
+	 * @param shopProbability
+	 *            The probability a Customer will enter the shop
+	 * @param ticksBeforeNoShop
+	 *            The time before the driver will not enter the shop
+	 * @param minShopTicks
+	 *            The minimum time the Customer will spend in the shop
+	 * @param maxShopTicks
+	 *            The maximum time the Customer will spend in the shop
+	 * @param minShopSpend
+	 *            The minimum amount the Customer will spend in the shop
+	 * @param maxShopSpend
+	 *            The maximum amount the Customer will spend in the shop
 	 */
-	public Vehicle(double vehicleSize, int minCapacity, int maxCapacity, double shopProbability, int ticksBeforeNoShop, int minShopTicks, int maxShopTicks, double minShopSpend, double maxShopSpend) {
+	public Vehicle(double vehicleSize, int minCapacity, int maxCapacity, double shopProbability, int ticksBeforeNoShop,
+			int minShopTicks, int maxShopTicks, double minShopSpend, double maxShopSpend) {
 		this.vehicleSize = vehicleSize;
 		this.registration = UUID.randomUUID();
 		this.currentFuel = 0;
@@ -90,11 +103,14 @@ public class Vehicle implements ItemsInQueue {
 		this.shopSpend = (double) Math.round(randomValue(minShopSpend, maxShopSpend) * 100) / 100;
 		this.payTicks = (int) Math.round(randomValue(Customer.MINIMUM_PAY_TICKS, Customer.MAXIMUM_PAY_TICKS));
 	}
-	
+
 	/**
 	 * Create a random value for the use within a vehicle
-	 * @param minValue smallest value 
-	 * @param maxValue largest value
+	 * 
+	 * @param minValue
+	 *            smallest value
+	 * @param maxValue
+	 *            largest value
 	 * @return
 	 */
 	private double randomValue(double minValue, double maxValue) {
@@ -104,10 +120,12 @@ public class Vehicle implements ItemsInQueue {
 		else
 			return (StationSimulator.random.nextDouble() * (maxValue - minValue)) + minValue;
 	}
-	
+
 	/**
 	 * Attempt to fill the Vehicle
-	 * @param amountToFill The number of gallons to fuel the Vehicle
+	 * 
+	 * @param amountToFill
+	 *            The number of gallons to fuel the Vehicle
 	 * @return whether the vehicle was filled or not
 	 */
 	public Boolean attemptVehicleFill(double amountToFill) {
@@ -121,17 +139,19 @@ public class Vehicle implements ItemsInQueue {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Access whether the Vehicle has paid
+	 * 
 	 * @return whether the Vehicle has paid
 	 */
 	public boolean getHasPaid() {
 		return hasPaid;
 	}
-	
+
 	/**
 	 * Access the size of a Vehicle
+	 * 
 	 * @return the size of the Vehicle
 	 */
 	public double getSize() {
@@ -140,6 +160,7 @@ public class Vehicle implements ItemsInQueue {
 
 	/**
 	 * Access the size of a Vehicle's tank
+	 * 
 	 * @return the size of a Vehicle's tank
 	 */
 	public int getTankSize() {
@@ -148,6 +169,7 @@ public class Vehicle implements ItemsInQueue {
 
 	/**
 	 * Access the unique registration code of a vehicle
+	 * 
 	 * @return the unique registration code
 	 */
 	public UUID getRegistration() {
@@ -163,6 +185,7 @@ public class Vehicle implements ItemsInQueue {
 
 	/**
 	 * Access whether the customer is inside of their vehicle
+	 * 
 	 * @return whether the customer is inside their vehicle
 	 */
 	public Boolean getIsOccupied() {
@@ -171,28 +194,31 @@ public class Vehicle implements ItemsInQueue {
 
 	/**
 	 * Mutator to set the vehicle as occupied
-	 * @param isVehicleOccupied 
+	 * 
+	 * @param isVehicleOccupied
 	 */
 	private void setisVehicleOccupied(Boolean isVehicleOccupied) {
 		this.isVehicleOccupied = isVehicleOccupied;
 	}
-	
+
 	/**
 	 * Access whether the Customer entered the shop
+	 * 
 	 * @return whether the customer entered the shop
 	 */
 	public boolean getDidCustomerShop() {
 		return didCustomerShop;
 	}
-	
+
 	/**
 	 * Access the total shop spend by a Customer
+	 * 
 	 * @return the total shop spend
 	 */
 	public double getShopSpend() {
 		return shopSpend;
 	}
-	
+
 	/**
 	 * The customer will enter the shop depending upon number of ticks since arrival
 	 */
@@ -203,26 +229,29 @@ public class Vehicle implements ItemsInQueue {
 			didCustomerShop = false;
 		}
 	}
-	
+
 	/**
 	 * The customer exit's their Vehicle and enters the Shop
+	 * 
 	 * @return Customer in the shop
 	 */
 	public Customer exitVehicle() {
-			isVehicleOccupied = false;
-			decideToShop();
-			int changeShopTicks = numShoppingTicks;
-			double changeShopSpend = shopSpend;
-			if (!didCustomerShop) {
-				changeShopTicks = 0;
-				changeShopSpend = 0;
-			}
-			return new Customer(changeShopTicks, changeShopSpend, currentFuel, didCustomerShop, payTicks, registration);
+		isVehicleOccupied = false;
+		decideToShop();
+		int changeShopTicks = numShoppingTicks;
+		double changeShopSpend = shopSpend;
+		if (!didCustomerShop) {
+			changeShopTicks = 0;
+			changeShopSpend = 0;
 		}
-	
+		return new Customer(changeShopTicks, changeShopSpend, currentFuel, didCustomerShop, payTicks, registration);
+	}
+
 	/**
 	 * The Customer has finished shopping and is now back inside their Vehicle
-	 * @param customer A customer at the Petrol Station
+	 * 
+	 * @param customer
+	 *            A customer at the Petrol Station
 	 */
 	public void customerBackInVehicle(Customer customer) {
 		if (customer.getRegistration().equals(registration)) {
