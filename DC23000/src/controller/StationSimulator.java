@@ -21,16 +21,16 @@ import model.Vehicle;
 public class StationSimulator {
 
 	/**
-	 * A constant to store the maximum queue size for a single till
+	 * The maximum queue size of an individual Till
 	 */
 	public final static int MAX_QUEUE_SIZE = 5;
 
 	/**
-	 * A constant to store the minimum size of a vehicle
+	 * The minimum size of a vehicle
 	 */
 	public final static double SMALLEST_VEHICLE = 0.75;
 	/**
-	 * A constant to store the initial value of variable t
+	 * The initial value of variable t
 	 */
 	private static final double INITIAL_T = 0.02;
 	/**
@@ -38,15 +38,16 @@ public class StationSimulator {
 	 */
 	private PetrolStation station;
 	/**
-	 * The probability that a Small Car or Motorbike will arrive
+	 * The probability that a Small Car or Motorbike will arrive at the Petrol
+	 * Station
 	 */
 	private final double p;
 	/**
-	 * The probability that a Family Sedan will arrive
+	 * The probability that a Family Sedan will arrive at the Petrol Station
 	 */
 	private final double q;
 	/**
-	 * The probability that a Truck will arrive
+	 * The probability that a Truck will arrive at the Petrol Station
 	 */
 	private double t;
 	/**
@@ -54,15 +55,23 @@ public class StationSimulator {
 	 */
 	private boolean trucksAllowed;
 	/**
-	 * A Randomiser for deciding on if a Vehicle will spawn and which type it will
-	 * be
+	 * A Random Number Generator to spawn vehicles
 	 */
 	public static Random random = new Random();
 
 	/**
-	 * Initializing a simulator will initialize a model Petrol Station and a User
-	 * Interface It will prompt the User Interface to gather the user chosen
-	 * variables
+	 * Initialize the Petrol Station
+	 * 
+	 * @param p
+	 *            Probability that a Small Car or Motorbike will arrive
+	 * @param q
+	 *            Probability that a Family Sedan will arrive
+	 * @param trucksAllowed
+	 *            Whether trucks are allowed
+	 * @param numPumps
+	 *            The number of Pumps
+	 * @param numTills
+	 *            The number of Tills
 	 */
 	public StationSimulator(double p, double q, boolean trucksAllowed, int numPumps, int numTills) {
 
@@ -74,7 +83,7 @@ public class StationSimulator {
 	}
 
 	/**
-	 * Run the simulation for a given number of ticks
+	 * Execute the simulation for X amount of ticks
 	 */
 	public void runSimulation(int ticks) {
 		for (int i = 0; i < ticks; i++) {
@@ -83,12 +92,9 @@ public class StationSimulator {
 	}
 
 	/**
-	 * Generates a random number and based on the result compared to the chances of
-	 * Vehicles spawning will either return a new Vehicle of the appropriate type or
-	 * null
+	 * Generates a random number and will spawn a new Vehicle or Null
 	 * 
-	 * @return Either null or a Vehicle
-	 * @throws MinGreaterThanMaxException
+	 * @return null or a Vehicle
 	 */
 	private Vehicle rollForVehicle() {
 		double chance = random.nextDouble();
@@ -103,7 +109,6 @@ public class StationSimulator {
 			Truck truck = new Truck();
 			truck.getHappyToShop().addListener(new ChangeListener<Boolean>() {
 
-				@Override
 				public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 					if (!newValue) {
 						t *= 0.8;
@@ -120,22 +125,16 @@ public class StationSimulator {
 	}
 
 	/**
-	 * Getter for the Simulators model Petrol Station
+	 * Access the Model Petrol Station
 	 * 
-	 * @return
+	 * @return the petrol station
 	 */
 	public PetrolStation getStation() {
 		return this.station;
 	}
 
-	public void flush() {
-		for (int i = 0; i < 50; i++) {
-			station.tick(null);
-		}
-	}
-
 	/**
-	 * 
+	 * Builds up a String to display variables about the Petrol Station
 	 */
 	public String toString() {
 		StringBuilder output = new StringBuilder();
@@ -160,6 +159,11 @@ public class StationSimulator {
 		return output.toString();
 	}
 
+	/**
+	 * Main Method (Tris you need to implement your GUI)
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
