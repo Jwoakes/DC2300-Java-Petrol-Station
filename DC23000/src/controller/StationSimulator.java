@@ -158,18 +158,4 @@ public class StationSimulator {
 		output.append("\r\n\r\n");
 		return output.toString();
 	}
-
-	/**
-	 * Main Method (Tris you need to implement your GUI)
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		launch(args);
-	}
-
-	private static void launch(String[] args) {
-
-	}
-
 }

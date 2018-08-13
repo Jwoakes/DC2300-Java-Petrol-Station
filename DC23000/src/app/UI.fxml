@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="459.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane prefHeight="615.0" prefWidth="1016.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Petrol Station">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text fontSmoothingType="LCD" layoutX="158.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Petrol Station Similation">
+                           <font>
+                              <Font size="66.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab text="Start Menu">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="603.0" layoutY="433.0" mnemonicParsing="false" text="Finish Simulation" />
+                        <Button layoutX="570.0" layoutY="107.0" mnemonicParsing="false" text="Run for a minute" />
+                        <Button layoutX="573.0" layoutY="197.0" mnemonicParsing="false" text="Run for an hour" />
+                        <ToggleButton layoutX="105.0" layoutY="248.0" mnemonicParsing="false" text="Trucks Enabled" />
+                        <TextField layoutX="105.0" layoutY="92.0" text="Fuel Price in £" />
+                        <Button layoutX="105.0" layoutY="433.0" mnemonicParsing="false" text="Start Simulation" />
+                        <TextField layoutX="105.0" layoutY="166.0" text="Number of Pumps" />
+                        <TextArea layoutX="716.0" layoutY="197.0" prefHeight="30.0" prefWidth="200.0" />
+                        <TextArea layoutX="716.0" layoutY="108.0" prefHeight="30.0" prefWidth="200.0" />
+                        <Label layoutX="748.0" layoutY="112.0" text="Time past minutes" />
+                        <Label layoutX="748.0" layoutY="202.0" text="Time past hours" />
+                        <TextArea layoutX="713.0" layoutY="264.0" prefHeight="30.0" prefWidth="200.0" />
+                        <Label layoutX="748.0" layoutY="269.0" text="Ticks past" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab text="Tills">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="91.0" layoutY="87.0" prefHeight="53.0" prefWidth="276.0" />
+                        <TextField layoutX="91.0" layoutY="235.0" prefHeight="53.0" prefWidth="276.0" />
+                        <Label layoutX="91.0" layoutY="56.0" text="Number of customers that have visted the shop" />
+                        <Label layoutX="91.0" layoutY="196.0" text="Amount that customer have spent in the shop" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Shop">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="101.0" layoutY="189.0" text="Total profit lost" />
+                        <Label layoutX="95.0" layoutY="56.0" text="Total profit made" />
+                        <TextField layoutX="95.0" layoutY="90.0" prefHeight="53.0" prefWidth="276.0" />
+                        <TextField layoutX="95.0" layoutY="227.0" prefHeight="53.0" prefWidth="276.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Pumps">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="75.0" layoutY="235.0" prefHeight="53.0" prefWidth="276.0" />
+                        <TextField layoutX="75.0" layoutY="98.0" prefHeight="53.0" prefWidth="276.0" />
+                        <Label layoutX="75.0" layoutY="64.0" text="Total fuel sold" />
+                        <Label layoutX="81.0" layoutY="197.0" text="Total fuel sales lost" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Vehicles">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="44.0" layoutY="35.0" text="Total vehicles that have used the pump" />
+                        <TextField layoutX="303.0" layoutY="117.0" />
+                        <TextField layoutX="303.0" layoutY="162.0" />
+                        <TextField layoutX="303.0" layoutY="209.0" />
+                        <TextField layoutX="303.0" layoutY="257.0" />
+                        <Label layoutX="124.0" layoutY="122.0" text="Bikes" />
+                        <Label layoutX="124.0" layoutY="167.0" text="Small Cars" />
+                        <Label layoutX="127.0" layoutY="214.0" text="Family Sedans" />
+                        <Label layoutX="127.0" layoutY="262.0" text="Trucks" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Graph Data">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <BarChart layoutX="14.0" layoutY="67.0">
+                          <xAxis>
+                            <CategoryAxis layoutY="2.0" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                        <BarChart layoutX="514.0" layoutY="67.0">
+                          <xAxis>
+                            <CategoryAxis layoutY="2.0" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                        <Label layoutX="64.0" layoutY="467.0" text="Profit Analysis" />
+                        <Label layoutX="556.0" layoutY="467.0" text="Vehicle Analysis" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
